@@ -1,49 +1,56 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Navigation from '../components/Navigation.astro';
-import Hero from '../components/Hero.astro';
-import Features from '../components/Features.astro';
-import Footer from '../components/Footer.astro';
+import Layout from '@layouts/Layout.astro';
+import Navigation from '@components/Navigation.astro';
+import Hero from '@components/Hero.astro';
+import Features from '@components/Features.astro';
+import Footer from '@components/Footer.astro';
+import Section from '@components/ui/Section.astro';
+import Container from '@components/ui/Container.astro';
+import { useTranslations, type Language } from '@/i18n/translations';
+
+const lang: Language = 'es';
+const t = useTranslations(lang);
 ---
 
-<Layout title="FastWeb - Sitio Moderno con Astro y TailwindCSS">
-  <Navigation />
-  <Hero />
-  <Features />
+<Layout 
+  title={t.meta.defaultTitle}
+  description={t.meta.defaultDescription}
+  lang={lang}
+>
+  <Navigation lang={lang} />
+  <Hero lang={lang} />
+  <Features lang={lang} />
   
   <!-- About Section -->
-  <section id="acerca" class="py-20 bg-gray-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-3xl mx-auto text-center">
+  <Section id="acerca" variant="gray">
+    <Container size="sm">
+      <div class="text-center">
         <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">
-          Acerca de Este Proyecto
+          {t.about.title}
         </h2>
         <p class="text-lg text-gray-600 mb-6">
-          Este sitio web es un template moderno creado con Astro 5.17, el framework web más rápido para 
-          construcción de sitios orientados al contenido. Combinado con TailwindCSS, obtienes un desarrollo 
-          ágil y un diseño profesional.
+          {t.about.content1}
         </p>
         <p class="text-lg text-gray-600">
-          Astro utiliza la arquitectura de islas para enviar solo el JavaScript necesario, 
-          resultando en sitios increíblemente rápidos que deleitan tanto a usuarios como a desarrolladores.
+          {t.about.content2}
         </p>
       </div>
-    </div>
-  </section>
+    </Container>
+  </Section>
 
   <!-- Contact Section -->
-  <section id="contacto" class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-2xl mx-auto text-center">
+  <Section id="contacto" variant="white">
+    <Container size="md">
+      <div class="text-center">
         <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">
-          ¿Listo para Comenzar?
+          {t.contact.title}
         </h2>
         <p class="text-lg text-gray-600 mb-8">
-          Este template está listo para que lo personalices y construyas algo increíble.
+          {t.contact.subtitle}
         </p>
       </div>
-    </div>
-  </section>
+    </Container>
+  </Section>
 
-  <Footer />
+  <Footer lang={lang} />
 </Layout>
