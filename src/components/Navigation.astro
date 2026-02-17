@@ -7,9 +7,17 @@ interface Props {
 
 const { lang = 'es' } = Astro.props;
 const t = useTranslations(lang);
+
+// Localized section IDs
+const sections = {
+  home: lang === 'en' ? 'home' : 'inicio',
+  features: lang === 'en' ? 'features' : 'caracteristicas',
+  about: lang === 'en' ? 'about' : 'acerca',
+  contact: lang === 'en' ? 'contact' : 'contacto',
+};
 ---
 
-<nav class="bg-white shadow-sm sticky top-0 z-40" role="navigation" aria-label="Main navigation">
+<nav class="bg-white shadow-sm sticky top-0 z-40 backdrop-blur-sm bg-white/95 supports-[backdrop-filter]:bg-white/80" role="navigation" aria-label="Main navigation">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center h-16">
       <div class="flex items-center">
@@ -18,16 +26,16 @@ const t = useTranslations(lang);
         </a>
       </div>
       <div class="hidden md:flex items-center space-x-8">
-        <a href="#inicio" class="text-gray-700 hover:text-indigo-600 transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 rounded">
+        <a href={`#${sections.home}`} class="text-gray-700 hover:text-indigo-600 transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 rounded">
           {t.nav.home}
         </a>
-        <a href="#caracteristicas" class="text-gray-700 hover:text-indigo-600 transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 rounded">
+        <a href={`#${sections.features}`} class="text-gray-700 hover:text-indigo-600 transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 rounded">
           {t.nav.features}
         </a>
-        <a href="#acerca" class="text-gray-700 hover:text-indigo-600 transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 rounded">
+        <a href={`#${sections.about}`} class="text-gray-700 hover:text-indigo-600 transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 rounded">
           {t.nav.about}
         </a>
-        <a href="#contacto" class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+        <a href={`#${sections.contact}`} class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
           {t.nav.contact}
         </a>
       </div>
@@ -49,16 +57,16 @@ const t = useTranslations(lang);
   </div>
   <div id="mobile-menu" class="hidden md:hidden" role="menu">
     <div class="px-2 pt-2 pb-3 space-y-1">
-      <a href="#inicio" class="block px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-md transition-colors" role="menuitem">
+      <a href={`#${sections.home}`} class="block px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-md transition-colors" role="menuitem">
         {t.nav.home}
       </a>
-      <a href="#caracteristicas" class="block px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-md transition-colors" role="menuitem">
+      <a href={`#${sections.features}`} class="block px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-md transition-colors" role="menuitem">
         {t.nav.features}
       </a>
-      <a href="#acerca" class="block px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-md transition-colors" role="menuitem">
+      <a href={`#${sections.about}`} class="block px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-md transition-colors" role="menuitem">
         {t.nav.about}
       </a>
-      <a href="#contacto" class="block px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-md transition-colors" role="menuitem">
+      <a href={`#${sections.contact}`} class="block px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-md transition-colors" role="menuitem">
         {t.nav.contact}
       </a>
     </div>

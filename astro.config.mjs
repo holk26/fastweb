@@ -4,6 +4,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
+  // Update this to your production domain before deployment
   site: 'https://fastweb.example.com',
   integrations: [
     tailwind(),
