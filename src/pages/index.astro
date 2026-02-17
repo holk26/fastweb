@@ -1,0 +1,66 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
+import Hero from '../components/Hero.astro';
+import Features from '../components/Features.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="FastWeb - Sitio Moderno con Astro y TailwindCSS">
+  <Navigation />
+  <Hero />
+  <Features />
+  
+  <!-- About Section -->
+  <section id="acerca" class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">
+          Acerca de Este Proyecto
+        </h2>
+        <p class="text-lg text-gray-600 mb-6">
+          Este sitio web es un template moderno creado con Astro 5.17, el framework web más rápido para 
+          construcción de sitios orientados al contenido. Combinado con TailwindCSS, obtienes un desarrollo 
+          ágil y un diseño profesional.
+        </p>
+        <p class="text-lg text-gray-600">
+          Astro utiliza la arquitectura de islas para enviar solo el JavaScript necesario, 
+          resultando en sitios increíblemente rápidos que deleitan tanto a usuarios como a desarrolladores.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contacto" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl mx-auto text-center">
+        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">
+          ¿Listo para Comenzar?
+        </h2>
+        <p class="text-lg text-gray-600 mb-8">
+          Este template está listo para que lo personalices y construyas algo increíble.
+        </p>
+        <div class="bg-gray-50 rounded-xl p-8 text-left">
+          <h3 class="text-xl font-semibold mb-4">Comandos Rápidos:</h3>
+          <div class="space-y-3 font-mono text-sm">
+            <div class="bg-white p-3 rounded border border-gray-200">
+              <span class="text-gray-500">$</span> npm run dev
+              <span class="text-gray-500 ml-2"># Inicia el servidor de desarrollo</span>
+            </div>
+            <div class="bg-white p-3 rounded border border-gray-200">
+              <span class="text-gray-500">$</span> npm run build
+              <span class="text-gray-500 ml-2"># Construye el sitio para producción</span>
+            </div>
+            <div class="bg-white p-3 rounded border border-gray-200">
+              <span class="text-gray-500">$</span> npm run preview
+              <span class="text-gray-500 ml-2"># Previsualiza el build de producción</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>

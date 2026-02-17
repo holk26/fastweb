@@ -1,0 +1,53 @@
+---
+const features = [
+  {
+    title: "⚡ Super Rápido",
+    description: "Astro genera sitios estáticos ultra rápidos con cero JavaScript por defecto."
+  },
+  {
+    title: "🎨 Diseño Moderno",
+    description: "TailwindCSS proporciona un sistema de diseño utility-first para crear interfaces hermosas."
+  },
+  {
+    title: "📱 Responsive",
+    description: "Totalmente adaptable a todos los dispositivos, desde móviles hasta escritorio."
+  },
+  {
+    title: "🔧 Fácil de Personalizar",
+    description: "Código limpio y modular que puedes adaptar fácilmente a tus necesidades."
+  },
+  {
+    title: "🚀 SEO Optimizado",
+    description: "Estructura optimizada para motores de búsqueda con meta tags y rendimiento excelente."
+  },
+  {
+    title: "💎 TypeScript",
+    description: "Soporte completo de TypeScript para desarrollo más seguro y productivo."
+  }
+];
+---
+
+<section id="caracteristicas" class="py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+        Características Principales
+      </h2>
+      <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+        Descubre por qué Astro y TailwindCSS son la combinación perfecta para tu próximo proyecto
+      </p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {features.map((feature) => (
+        <div class="bg-gray-50 rounded-xl p-6 hover:shadow-lg transition-shadow border border-gray-100">
+          <h3 class="text-2xl font-semibold mb-3 text-gray-900">
+            {feature.title}
+          </h3>
+          <p class="text-gray-600">
+            {feature.description}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
