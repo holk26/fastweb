@@ -6,7 +6,10 @@
       "@/*": ["src/*"],
       "@components/*": ["src/components/*"],
       "@layouts/*": ["src/layouts/*"],
-      "@pages/*": ["src/pages/*"]
+      "@pages/*": ["src/pages/*"],
+      "@scripts/*": ["src/scripts/*"],
+      "@config/*": ["src/config/*"],
+      "@styles/*": ["src/styles/*"]
     }
   }
 }
