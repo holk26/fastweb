@@ -1,4 +1,6 @@
 ---
+import { siteConfig } from '@/config/site';
+
 interface Props {
   title: string;
   description?: string;
@@ -11,12 +13,13 @@ const {
   title,
   description = "Un sitio web moderno creado con Astro y TailwindCSS",
   lang = 'es',
-  image = '/og-image.png',
-  keywords = 'Astro, TailwindCSS, TypeScript, Web Development, Fast Website, SEO',
+  image = siteConfig.defaultImage,
+  keywords = siteConfig.defaultKeywords,
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const ogImage = new URL(image, Astro.site);
+const gtmId = siteConfig.gtmId;
 ---
 
 <!doctype html>
@@ -27,54 +30,72 @@ const ogImage = new URL(image, Astro.site);
     <meta name="description" content={description} />
     <meta name="keywords" content={keywords} />
     <meta name="generator" content={Astro.generator} />
-    
+
     <!-- Canonical URL -->
     <link rel="canonical" href={canonicalURL} />
-    
+
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImage} />
-    <meta property="og:site_name" content="FastWeb" />
+    <meta property="og:site_name" content={siteConfig.name} />
     <meta property="og:locale" content={lang === 'es' ? 'es_ES' : 'en_US'} />
-    
+
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content={canonicalURL} />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
-    
-    <!-- Preconnect to improve performance -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-    
+
     <title>{title}</title>
-    
+
     <!-- Structured Data (JSON-LD) -->
     <script is:inline type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "WebSite",
-      "name": "FastWeb",
+      "name": siteConfig.name,
       "description": description,
       "url": canonicalURL,
       "image": ogImage,
       "inLanguage": lang === 'es' ? 'es-ES' : 'en-US',
     })} />
+
+    <!-- Google Tag Manager (only loaded when PUBLIC_GTM_ID is set) -->
+    {gtmId && (
+      <script is:inline set:html={`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${gtmId}');`} />
+    )}
   </head>
   <body class="bg-gray-50 text-gray-900 antialiased">
+    <!-- Google Tag Manager (noscript) -->
+    {gtmId && (
+      <noscript>
+        <iframe
+          src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`}
+          height="0"
+          width="0"
+          style="display:none;visibility:hidden"
+        ></iframe>
+      </noscript>
+    )}
+
     <!-- Skip to main content for accessibility -->
     <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-indigo-600 focus:text-white focus:rounded-lg">
       Skip to main content
     </a>
-    
+
     <main id="main-content">
       <slot />
     </main>
+
+    <!-- Tracking module (deferred, non-critical) -->
+    <script>
+      import '@/scripts/datalayer';
+    </script>
   </body>
 </html>
